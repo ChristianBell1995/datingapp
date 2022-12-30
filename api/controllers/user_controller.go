@@ -69,7 +69,8 @@ func (base *BaseController) LoginUser(c *gin.Context) {
 	}
 
 	if err := user.ValidateUserPassword(base.DB, user.Password); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		formattedError := utils.FormatError(err.Error())
+		c.JSON(http.StatusBadRequest, gin.H{"error": formattedError.Error()})
 		return
 	}
 	token, err := auth.CreateToken(user.ID)

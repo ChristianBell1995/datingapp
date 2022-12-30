@@ -4,7 +4,6 @@ package config
 import (
 	"log"
 
-	"github.com/ChristianBell1995/datingapp/api/models"
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 	"gorm.io/gorm"
@@ -26,7 +25,8 @@ func NewServer() Server {
 	router := newGinRouter(db)
 
 	// Migrate database
-	db.AutoMigrate(&models.User{}, &models.Swipe{})
+	// db.AutoMigrate(&models.User{}, &models.Swipe{})
+	seed(db)
 
 	return Server{
 		DB:     db,

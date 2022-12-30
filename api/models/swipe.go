@@ -11,9 +11,9 @@ import (
 
 type Swipe struct {
 	gorm.Model
-	SwiperID   uint   `gorm:"size:255;not null;unique" json:"swiper_id"`
+	SwiperID   uint   `gorm:"size:255;not null" json:"swiperId"`
 	Swiper     User   `gorm:"foreignKey:SwiperID"`
-	ProfileID  uint   `gorm:"size:255;not null;unique" json:"profile_id"`
+	ProfileID  uint   `gorm:"size:255;not null" json:"profileId"`
 	Profile    User   `gorm:"foreignKey:ProfileID"`
 	Preference string `gorm:"size:100;not null;" json:"preference"`
 }

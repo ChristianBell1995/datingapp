@@ -3,6 +3,7 @@ package config
 import (
 	"github.com/ChristianBell1995/datingapp/api/controllers"
 	"github.com/ChristianBell1995/datingapp/api/middleware"
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
 )
@@ -11,14 +12,23 @@ import (
 func newGinRouter(db *gorm.DB) *gin.Engine {
 
 	httpRouter := gin.Default()
+	// httpRouter.Use(cors.Default())
+	config := cors.DefaultConfig()
+	config.AllowOrigins = []string{"http://localhost:3000"}
+	config.AllowHeaders = []string{"Origin", "Content-Length", "Content-Type", "Authorization"}
+	// config.AllowOrigins = []string{"http://google.com", "http://facebook.com"}
+	// config.AllowAllOrigins = true
+
+	httpRouter.Use(cors.New(config))
+
 	baseController := controllers.BaseController{
 		DB: db,
 	}
 
 	// User create endpoint
-	httpRouter.GET("/user/create", baseController.CreateUser)
+	httpRouter.POST("/user/create", baseController.CreateUser)
 	// Profiles endpoint
-	httpRouter.GET("/profiles", middleware.ValidateToken(), baseController.ListUsers)
+	httpRouter.GET("/profiles", baseController.ListUsers)
 	// User login
 	httpRouter.POST("/user/login", baseController.LoginUser)
 	// Swipe endpoint

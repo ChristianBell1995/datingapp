@@ -15,11 +15,12 @@ import (
 
 type User struct {
 	gorm.Model
-	Name     string `gorm:"size:255;not null;unique" json:"name"`
+	Name     string `gorm:"size:255;not null" json:"name"`
 	Email    string `gorm:"size:100;not null;unique" json:"email"`
 	Password string `gorm:"size:100;not null;" json:"password,omit"`
 	Gender   string `gorm:"size:100;not null;" json:"gender"`
 	Age      uint8  `gorm:"size:100;not null;" json:"age"`
+	ImageUrl string `json:"imageUrl"`
 }
 
 type UserResponse struct {
@@ -28,8 +29,9 @@ type UserResponse struct {
 	Email     string    `json:"email"`
 	Gender    string    `json:"gender"`
 	Age       uint8     `json:"age"`
-	CreatedAt time.Time `json:"created_at"`
-	UpdatedAt time.Time `json:"updated_at"`
+	ImageUrl  string    `json:"imageUrl"`
+	CreatedAt time.Time `json:"createdAt"`
+	UpdatedAt time.Time `json:"updatedAt"`
 }
 
 func Hash(password string) ([]byte, error) {

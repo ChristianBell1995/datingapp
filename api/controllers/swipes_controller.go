@@ -11,7 +11,7 @@ import (
 )
 
 type CreateSwipeResponse struct {
-	Match bool
+	Match bool `json:"match"`
 }
 
 // create swipe
@@ -63,6 +63,6 @@ func (base *BaseController) CreateSwipe(c *gin.Context) {
 		return
 	}
 	response.Match = swipeBool
-	c.JSON(http.StatusOK, gin.H{"data": &savedSwipe})
+	c.JSON(http.StatusOK, gin.H{"data": &response})
 	return
 }
