@@ -38,5 +38,5 @@ In addition to the packages in the `api` directory, there is also the `config` p
 - In the future as the application grows it may be necessary to refactor the architecture so that we introduce a `service` layer between the `controllers` and the `models`. In this pattern we would manage all of the validation of our HTTP requests at the controller layer (e.g. ensuring each request has the correct fields in the body), and then move the business logic into our service which would then interact with our models.
 - Another area of improvement is how we handle errors, the `FormatError` function is fairly basic at the moment so we could extend + standardize this to ensure more consistency across our API. Maybe move it into a middleware.
 
-# Other useful commands
+### Other useful commands
 To force the DB to reset -> `docker-compose up --force-recreate db`
