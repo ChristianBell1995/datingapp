@@ -1,7 +1,5 @@
-# Dating app backend
-- An API for a dating app. Contains the following endpoints:
-
-## Backend
+# Backend
+- An API for a dating app.
 ### Get started
 - Run `docker-compose up`
 - This should create a new mysql db, run the seed, and start the API running at http://localhost:8000
