@@ -24,8 +24,7 @@ func NewServer() Server {
 	// Initialize router
 	router := newGinRouter(db)
 
-	// Migrate database
-	// db.AutoMigrate(&models.User{}, &models.Swipe{})
+	// Migrate database and seed
 	seed(db)
 
 	return Server{

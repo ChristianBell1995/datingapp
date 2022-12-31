@@ -56,7 +56,6 @@ func (base *BaseController) CreateSwipe(c *gin.Context) {
 		return
 	}
 
-	// If there is another saved swipe with the same swiper and swiped then create a match
 	swipeBool, err := savedSwipe.IsAMatch(base.DB)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})

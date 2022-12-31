@@ -12,12 +12,9 @@ import (
 func newGinRouter(db *gorm.DB) *gin.Engine {
 
 	httpRouter := gin.Default()
-	// httpRouter.Use(cors.Default())
 	config := cors.DefaultConfig()
 	config.AllowOrigins = []string{"http://localhost:3000"}
 	config.AllowHeaders = []string{"Origin", "Content-Length", "Content-Type", "Authorization"}
-	// config.AllowOrigins = []string{"http://google.com", "http://facebook.com"}
-	// config.AllowAllOrigins = true
 
 	httpRouter.Use(cors.New(config))
 
