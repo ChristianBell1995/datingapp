@@ -2,7 +2,6 @@ package models
 
 import (
 	"errors"
-	"fmt"
 	"html"
 	"log"
 	"strings"
@@ -104,8 +103,7 @@ func (u *User) SaveUser(db *gorm.DB) (*UserResponse, error) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Println("U.password: ", u.Password)
-	fmt.Println(u.Password)
+
 	err = db.Debug().Create(&u).Error
 	if err != nil {
 		return &UserResponse{}, err
